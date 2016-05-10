@@ -1,0 +1,23 @@
+{
+  "name": "infrastructure-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node node_modules/typescript/bin/tsc",
+    "start": "node --harmony-default-parameters tests.js index.js",
+    "test": "npm run build && node --harmony-default-parameters tests.js '*_tests.js'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tsd": "^0.6.5",
+    "typescript": "^1.8.10",
+    "typings": "^0.8.1"
+  },
+  "dependencies": {
+    "glob": "^7.0.3",
+    "node-fetch": "^1.5.1"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "infrastructure-tests",
+  "version": false,
+  "dependencies": {},
+  "ambientDependencies": {
+    "node": "registry:dt/node#4.0.0+20160501135006",
+    "whatwg-fetch": "registry:dt/whatwg-fetch#0.0.0+20160412133644"
+  }
+}
