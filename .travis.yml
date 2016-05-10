@@ -1,0 +1,12 @@
+sudo: required
+
+language: javascript
+
+services:
+  - docker
+
+before_install:
+  - docker build -t metacode/infr .
+
+script:
+  - docker run --rm -i metacode/infr
