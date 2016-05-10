@@ -33,8 +33,7 @@ export async function testSslNegative() {
 }
 
 export async function testSslPositive() {
-    const result = await sslTest({ host: 'google.com' });
-    assert(result.info.ssl.grades.length === 2);
-    assert(result.info.ssl.grades[0] === 'B');
-    assert(result.info.ssl.grades[1] === 'B');
+    const result = await sslTest({ host: 'sha256.badssl.com' });
+    assert(result.info.ssl.grades.length === 1);
+    assert(result.info.ssl.grades[0] === 'C');
 }
