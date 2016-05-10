@@ -4,6 +4,6 @@ WORKDIR /app/
 COPY package.json /app/
 RUN npm install --production
 COPY . /app/
-RUN npm install && npm run build && npm test && npm prune --production
+RUN npm install --dev && npm run build && npm test && npm prune --production
 
 CMD ["npm", "start"]
