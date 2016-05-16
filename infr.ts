@@ -37,12 +37,14 @@ export async function ipv6webserver(query: { url: string, scheme: 'http' | 'http
 
 export async function sslTest(query: { host: string }) {
     let json: { status: 'IN_PROGRESS' | 'READY', endpoints: { grade: 'A+' | 'A' | 'C' | 'F' | 'T' }[] };
+    let startNew = 'on';
     while (!json || json.status !== 'READY') {
-        const response = await fetch(url`https://api.ssllabs.com/api/v2/analyze?host=${query.host}`);
+        const response = await fetch(url`https://api.ssllabs.com/api/v2/analyze?host=${query.host}&startNew=${startNew}`);
         json = await response.json();
         if (json.status !== 'READY') {
             await delay(10000);
         }
+        startNew = 'off';
     }
     return {
         info: {
