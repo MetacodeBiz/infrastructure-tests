@@ -1,3 +1,5 @@
+require('source-map-support').install();
+
 import fs = require('fs');
 import { sync } from 'glob';
 
