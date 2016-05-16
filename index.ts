@@ -5,6 +5,7 @@ const assert = console.assert;
 export async function testHttp20Positive() {
     const result = await http2query({ url: 'metacode.biz' });
     assert(result.supports.http20 === true);
+    assert(result.supports.alpn === true, 'Must support ALPN');
 }
 
 export async function testIpv6Positive() {
