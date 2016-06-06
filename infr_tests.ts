@@ -29,11 +29,11 @@ export async function testIpv6Positive() {
 export async function testSslNegative() {
     const result = await sslTest({ host: 'expired.badssl.com' });
     assert(result.info.ssl.grades.length === 1);
-    assert(result.info.ssl.grades[0] === 'T');
+    assert(result.info.ssl.grades[0] === 'F');
 }
 
 export async function testSslPositive() {
     const result = await sslTest({ host: 'sha256.badssl.com' });
     assert(result.info.ssl.grades.length === 1);
-    assert(result.info.ssl.grades[0] === 'C');
+    assert(result.info.ssl.grades[0] === 'F');
 }
