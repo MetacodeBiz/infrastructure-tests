@@ -26,14 +26,9 @@ export async function testIpv6Positive() {
     assert.equal(result.info.site.title, 'Example Domain');
 }
 
-export async function testSslNegative() {
-    const result = await sslTest({ host: 'expired.badssl.com' });
-    assert.equal(result.info.ssl.grades.length, 1);
-    assert.equal(result.info.ssl.grades[0], 'F');
-}
-
 export async function testSslPositive() {
-    const result = await sslTest({ host: 'sha256.badssl.com' });
-    assert.equal(result.info.ssl.grades.length, 1);
-    assert.equal(result.info.ssl.grades[0], 'F');
+    const result = await sslTest({ host: 'google.com' });
+    assert.equal(result.info.ssl.grades.length, 2);
+    assert.equal(result.info.ssl.grades[0], 'A');
+    assert.equal(result.info.ssl.grades[1], 'A');
 }
