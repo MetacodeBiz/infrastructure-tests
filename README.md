@@ -1,9 +1,9 @@
 # Test driven infrastructure
 
-[![Build Status](https://travis-ci.org/wiktor-k/infrastructure-tests.svg?branch=master)](https://travis-ci.org/wiktor-k/infrastructure-tests)
+[![Build Status](https://travis-ci.org/wiktor-k/infrastructure-tests.svg?branch=master)](https://travis-ci.org/wiktor-k/infrastructure-tests) [![Dependency Status](https://dependencyci.com/github/wiktor-k/infrastructure-tests/badge)](https://dependencyci.com/github/wiktor-k/infrastructure-tests)
 
 This repository contains tests of the *metacode.biz* infrastructure.
-These tests always ask external services to asses the state of the infrastructure
+These tests always ask external services to assess the state of the infrastructure.
 
 ## Running tests
 
