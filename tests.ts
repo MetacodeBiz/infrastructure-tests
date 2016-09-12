@@ -2,6 +2,8 @@ require('source-map-support').install();
 
 import fs = require('fs');
 import { sync } from 'glob';
+import * as stackTrace from 'stack-trace';
+import { execSync } from 'child_process';
 
 (global as any).fetch = require('node-fetch');
 
@@ -37,6 +39,11 @@ export function testModule(fileName: string) {
                     console.error('                      expected: ' + (<any>e).expected);
                     console.error('                      actual: ' + (<any>e).actual);
                 }
+                const frame = stackTrace.parse(e)[0];
+                const file = frame.getFileName().split(/[\/|\\]/g).pop();
+                const line = frame.getLineNumber();
+                const revision = execSync('git rev-parse HEAD').toString('utf-8').trim();
+                console.error(`Source: https://github.com/wiktor-k/infrastructure-tests/blob/${revision}/${file}#L${line}`);
                 console.error(e.stack);
                 console.error('')
             }
