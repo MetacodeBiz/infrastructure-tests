@@ -32,9 +32,11 @@ Currently tests cover:
 
   * HTTP/2 with [ALPN][ALPN],
   * IPv6 support,
-  * [TLS configuration][SSLLABS].
+  * [TLS configuration][SSLLABS],
+  * [DNSSEC configuration][DNSSEC].
 
 See [`infr.ts`](infr.ts) for a complete list of supported tests.
 
 [ALPN]: https://en.wikipedia.org/wiki/Application-Layer_Protocol_Negotiation
 [SSLLABS]: https://www.ssllabs.com/ssltest/
+[DNSSEC]: https://www.icann.org/resources/pages/dnssec-qaa-2014-01-29-en

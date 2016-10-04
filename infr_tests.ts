@@ -1,4 +1,4 @@
-import { http2query, ipv6webserver, sslTest } from './infr';
+import { http2query, ipv6webserver, sslTest, dnssec } from './infr';
 
 import * as assert from 'assert';
 
@@ -31,4 +31,14 @@ export async function testSslPositive() {
     assert.equal(result.info.ssl.grades.length, 2);
     assert.equal(result.info.ssl.grades[0], 'A');
     assert.equal(result.info.ssl.grades[1], 'A');
+}
+
+export async function testDnssecPositive() {
+    const result = await dnssec({ host: 'verisigninc.com' });
+    assert.equal(result.secure, true);
+}
+
+export async function testDnssecNegative() {
+    const result = await dnssec({ host: 'google.com' });
+    assert.equal(result.secure, false);
 }
