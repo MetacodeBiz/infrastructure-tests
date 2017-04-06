@@ -1,12 +1,6 @@
-import { http2query, ipv6webserver, sslTest, dnssec } from './infr';
+import { ipv6webserver, sslTest, dnssec } from './infr';
 
 import * as assert from 'assert';
-
-export async function testHttp20Positive() {
-    const result = await http2query({ url: 'metacode.biz' });
-    assert.equal(result.supports.http20, true);
-    assert.equal(result.supports.alpn, true, 'Must support ALPN');
-}
 
 export async function testIpv6Positive() {
     const result = await ipv6webserver({ url: 'metacode.biz', scheme: 'https' });
@@ -17,12 +11,14 @@ export async function testIpv6Positive() {
 
 export async function testSslPositive() {
     const result = await sslTest({ host: 'metacode.biz' });
-    assert.equal(result.info.ssl.grades.length, 2);
-    assert.equal(result.info.ssl.grades[0], 'A+');
-    assert.equal(result.info.ssl.grades[1], 'A+');
+    assert.equal(result.endpoints.length, 2);
+    assert.equal(result.endpoints[0].grade, 'A+');
+    assert.equal(result.endpoints[1].grade, 'A+');
+    assert.ok(result.endpoints[0].details.supportsAlpn);
+    assert.ok(result.endpoints[1].details.supportsAlpn);
 }
 
 export async function testDnssecPositive() {
     const result = await dnssec({ host: 'metacode.biz' });
-    assert.equal(result.secure, true);
+    assert.ok(result.secure);
 }
