@@ -32,3 +32,15 @@ export async function testDnssecNegative() {
     const result = await dnssec({ host: 'google.com' });
     assert.equal(result.secure, false);
 }
+
+export async function testHeadersPositive() {
+    const result = await headers({ url: 'https://securityheaders.io' });
+    const sts = result.get('strict-transport-security');
+    if (!sts) {
+        throw new assert.AssertionError('STS header should be set.');
+    } else {
+        assert.ok('preload' in sts);
+        assert.ok('includeSubDomains' in sts);
+        assert.ok(Number(sts['max-age']) >= 31536000);
+    }
+}

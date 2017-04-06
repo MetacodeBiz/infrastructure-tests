@@ -59,3 +59,27 @@ export async function dnssec(query: { host: string }) {
         secure: json.status === 'secure'
     };
 }
+
+export async function headers(query: { url: string }) {
+    const response = await fetch(query.url);
+    return {
+        get(header: string) {
+            const value = response.headers.get(header);
+            if (!value) {
+                return null;
+            }
+            return value.split(/;\s*/g).reduce((previous, current) => {
+                if (current.includes('=')) {
+                    const parts = current.split('=');
+                    previous[parts[0]] = parts[1];
+                } else if (current.includes(' ')) {
+                    const parts = current.split(' ');
+                    previous[parts[0]] = parts[1];
+                } else {
+                    previous[current] = null;
+                }
+                return previous;
+            }, Object.create(null) as { [key: string]: string | null });
+        }
+    };
+}
