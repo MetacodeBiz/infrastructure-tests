@@ -1,6 +1,5 @@
 require('source-map-support').install();
 
-import fs = require('fs');
 import { sync } from 'glob';
 import * as stackTrace from 'stack-trace';
 import { execSync } from 'child_process';

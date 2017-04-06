@@ -2,8 +2,17 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es6",
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
         "noImplicitAny": true,
-        "sourceMap": true
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "strictNullChecks": true,
+        "removeComments": false,
+        "sourceMap": true,
+        "moduleResolution": "node"
     },
     "exclude": [
         "typings/browser.d.ts",
