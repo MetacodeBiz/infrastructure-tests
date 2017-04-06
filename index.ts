@@ -1,21 +1,22 @@
-import { ipv6webserver, sslTest, dnssec, headers } from './infr';
+import { sslTest, dnssec, headers } from './infr';
 
 import * as assert from 'assert';
-
-export async function testIpv6Positive() {
-    const result = await ipv6webserver({ url: 'metacode.biz', scheme: 'https' });
-    assert.equal(result.supports.ipv6, true);
-    assert.notEqual(result.info.dns.AAAA.length, 0);
-    assert.notEqual(result.info.site.title.length, 0);
-}
+import isIPv6 = require('is-ipv6-node');
 
 export async function testSslPositive() {
     const result = await sslTest({ host: 'metacode.biz' });
     assert.equal(result.endpoints.length, 2);
+
+    // check for high grades
     assert.equal(result.endpoints[0].grade, 'A+');
     assert.equal(result.endpoints[1].grade, 'A+');
+
+    // check for ALPN/H2 support
     assert.ok(result.endpoints[0].details.supportsAlpn);
     assert.ok(result.endpoints[1].details.supportsAlpn);
+
+    // check for IPv6 support
+    assert.ok(result.endpoints.some(endpoint => isIPv6(endpoint.ipAddress)), 'Must have at least one IPv6 address.');
 }
 
 export async function testDnssecPositive() {

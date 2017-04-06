@@ -6,24 +6,6 @@ const url = sanitizer(encodeURIComponent);
 
 const delay = (millis: number) => new Promise<void>(resolve => setTimeout(resolve, millis));
 
-export async function ipv6webserver(query: { url: string, scheme: 'http' | 'https' }) {
-    const response = await fetch(url`http://ipv6-test.com/json/webserver.php?url=${query.url}&scheme=${query.scheme}`);
-    const json: { dns_aaaa: string; server: string; title: string } = await response.json();
-    return {
-        supports: {
-            ipv6: !('error' in json)
-        },
-        info: {
-            dns: {
-                AAAA: json.dns_aaaa
-            },
-            site: {
-                title: json.title
-            }
-        }
-    };
-}
-
 export async function sslTest(query: { host: string }) {
     let json: { status: 'IN_PROGRESS' | 'READY', endpoints: { ipAddress: string }[] } = { status: 'IN_PROGRESS', endpoints: [] };
     let startNew = 'on';
@@ -44,6 +26,7 @@ export async function sslTest(query: { host: string }) {
                 }
                 return response.json();
             }))) as any as {
+                ipAddress: string;
                 grade: 'A+' | 'A' | 'F' | 'T';
                 details: {
                     supportsAlpn: true
