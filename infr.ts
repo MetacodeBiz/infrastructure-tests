@@ -1,5 +1,5 @@
 const sanitizer = (sanitization: (text: string) => string) =>
-    (substrings: string[], ...values: string[]) =>
+    (substrings: TemplateStringsArray, ...values: string[]) =>
         substrings.reduce((previous, current, index) => previous + current + sanitization(values[index] || ''), '');
 
 const url = sanitizer(encodeURIComponent);

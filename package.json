@@ -13,9 +13,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "tsd": "^0.6.5",
-    "typescript": "^1.8.10",
-    "typings": "^0.8.1"
+    "@types/glob": "^5.0.30",
+    "@types/node": "^7.0.12",
+    "@types/stack-trace": "0.0.28",
+    "typescript": "^2.2.2"
   },
   "dependencies": {
     "glob": "^7.0.3",
