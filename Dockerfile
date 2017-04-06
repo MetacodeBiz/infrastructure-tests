@@ -2,8 +2,8 @@ FROM node:6.1-slim
 
 WORKDIR /app/
 COPY package.json /app/
-RUN npm install --production
+RUN npm install
 COPY . /app/
-RUN npm install --only=dev && npm run build && npm test && npm prune --production
+RUN npm run build && npm test
 
 CMD ["npm", "start"]
