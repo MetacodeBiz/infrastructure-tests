@@ -5,6 +5,10 @@ import isIPv6 = require('is-ipv6-node');
 
 const endpoints = sslTest({ host: 'metacode.biz' }).then(result => result.endpoints);
 
+function fail(message: string): never {
+    throw new assert.AssertionError({ message });
+}
+
 export async function testHighGrades() {
     assert.ok(
         (await endpoints).every(endpoint => endpoint.grade === 'A+'),
@@ -36,7 +40,7 @@ const headersResult = headers({ url: 'https://metacode.biz' });
 export async function testStrictTransportSecurity() {
     const sts = (await headersResult).get('strict-transport-security');
     if (!sts) {
-        throw new assert.AssertionError('STS header should be set.');
+        fail('STS header should be set.');
     } else {
         assert.ok('preload' in sts, 'STS must be preloaded');
         assert.ok('includeSubDomains' in sts, 'STS must include subdomains.');
@@ -47,7 +51,7 @@ export async function testStrictTransportSecurity() {
 export async function testXXSSProtection() {
     const xss = (await headersResult).get('x-xss-protection');
     if (!xss) {
-        throw new assert.AssertionError('XSS header should be set.');
+        fail('XSS header should be set.');
     } else {
         assert.ok('1' in xss, 'XSS must be enabled.');
         assert.equal('block', xss['mode'], 'XSS must be in mode block.');
@@ -58,7 +62,7 @@ export async function testXXSSProtection() {
 export async function testXContentTypeOptions() {
     const cto = (await headersResult).get('x-content-type-options');
     if (!cto) {
-        throw new assert.AssertionError('XCTO header should be set.');
+        fail('XCTO header should be set.');
     } else {
         assert.ok('nosniff' in cto, 'XCTO must be enabled.');
     }
@@ -67,7 +71,7 @@ export async function testXContentTypeOptions() {
 export async function testXFrameOptions() {
     const xfo = (await headersResult).get('x-frame-options');
     if (!xfo) {
-        throw new assert.AssertionError('XFO header should be set.');
+        fail('XFO header should be set.');
     } else {
         assert.ok('DENY' in xfo, 'XFO must be enabled.');
     }
