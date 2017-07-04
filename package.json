@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "node node_modules/typescript/bin/tsc",
-    "start": "node --harmony-default-parameters tests.js index.js",
-    "test": "npm run build && node --harmony-default-parameters tests.js \"*_tests.js\"",
+    "start": "node tests.js index.js",
+    "test": "npm run build && node tests.js \"*_tests.js\"",
     "start-in-docker": "docker build -t metacode/infr . && docker run --rm -i metacode/infr"
   },
   "keywords": [],
