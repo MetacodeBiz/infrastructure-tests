@@ -76,3 +76,12 @@ export async function testXFrameOptions() {
         assert.ok('DENY' in xfo, 'XFO must be enabled.');
     }
 }
+
+export async function testApexAndWwwHttpsResponse() {
+    if (!(await fetch('https://metacode.biz')).ok) {
+        throw new Error('Fetching https://metacode.biz did not succeed.');
+    }
+    if (!(await fetch('https://www.metacode.biz')).ok) {
+        throw new Error('Fetching https://www.metacode.biz did not succeed.');
+    }
+}

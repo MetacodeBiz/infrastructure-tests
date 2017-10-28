@@ -34,7 +34,8 @@ Currently tests cover:
   * IPv6 support,
   * [TLS configuration][SSLLABS],
   * [DNSSEC configuration][DNSSEC],
-  * [Security headers][SECH].
+  * [Security headers][SECH],
+  * HTTPS responses on both zone apex and `www` subdomain.
 
 See [`infr.ts`](infr.ts) for a complete list of supported tests.
 
