@@ -66,3 +66,11 @@ export async function headers(query: { url: string }) {
         }
     };
 }
+
+export async function caaRecordTags(query: { hostname: string }) {
+    const response = await fetch(url`https://dns.google.com/resolve?name=${query.hostname}&type=CAA`);
+    const json: { Answer: { data: string }[] } = await response.json();
+    // records have structure: "flag tag value"
+    // this function retrieves all configured tags
+    return json.Answer.map(answer => answer.data.split(' ')[1]);
+}

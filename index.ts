@@ -1,4 +1,4 @@
-import { sslTest, dnssec, headers } from './infr';
+import { sslTest, dnssec, headers, caaRecordTags } from './infr';
 
 import * as assert from 'assert';
 import isIPv6 = require('is-ipv6-node');
@@ -84,4 +84,11 @@ export async function testApexAndWwwHttpsResponse() {
     if (!(await fetch('https://www.metacode.biz')).ok) {
         throw new Error('Fetching https://www.metacode.biz did not succeed.');
     }
+}
+
+export async function testCaaRecords() {
+    const tags = await caaRecordTags({ hostname: 'metacode.biz' });
+    assert.ok(tags.indexOf('issue') > -1);
+    assert.ok(tags.indexOf('issuewild') > -1);
+    assert.ok(tags.indexOf('iodef') > -1);
 }

@@ -35,7 +35,8 @@ Currently tests cover:
   * [TLS configuration][SSLLABS],
   * [DNSSEC configuration][DNSSEC],
   * [Security headers][SECH],
-  * HTTPS responses on both zone apex and `www` subdomain.
+  * HTTPS responses on both zone apex and `www` subdomain,
+  * [CAA records][CAA].
 
 See [`infr.ts`](infr.ts) for a complete list of supported tests.
 
@@ -43,3 +44,4 @@ See [`infr.ts`](infr.ts) for a complete list of supported tests.
 [SSLLABS]: https://www.ssllabs.com/ssltest/
 [DNSSEC]: https://www.icann.org/resources/pages/dnssec-qaa-2014-01-29-en
 [SECH]: https://securityheaders.io/
+[CAA]: https://en.wikipedia.org/wiki/DNS_Certification_Authority_Authorization
