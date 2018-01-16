@@ -1,4 +1,4 @@
-FROM node:8.1-slim@sha256:170958638ebdd26233b795b734e5c2a2a66ed23edab77e094aa9cf97e269cc3d
+FROM node:9.4-slim@sha256:41812a18ec7c647e85a3d8faba9ce1a213f35945321a5f6b4aef0283ec6ed740
 
 WORKDIR /app/
 COPY package.json npm-shrinkwrap.json /app/

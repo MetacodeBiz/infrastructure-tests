@@ -1,7 +1,10 @@
 {
   "name": "infrastructure-tests",
   "version": "1.0.0",
-  "description": "",
+  "description": "Tests of the metacode.biz infrastructure",
+  "repository": {
+    "url": "https://github.com/wiktor-k/infrastructure-tests"
+  },
   "main": "index.js",
   "scripts": {
     "build": "node node_modules/typescript/bin/tsc",
@@ -11,18 +14,18 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "devDependencies": {
-    "@types/glob": "^5.0.30",
-    "@types/node": "^7.0.12",
-    "@types/stack-trace": "0.0.28",
-    "typescript": "^2.4.1"
+    "@types/glob": "^5.0.34",
+    "@types/node": "^9.3.0",
+    "@types/stack-trace": "^0.0.29",
+    "typescript": "^2.6.2"
   },
   "dependencies": {
-    "glob": "^7.0.3",
+    "glob": "^7.1.2",
     "is-ipv6-node": "^1.0.7",
-    "node-fetch": "^1.5.1",
-    "source-map-support": "^0.4.0",
-    "stack-trace": "0.0.9"
+    "node-fetch": "^1.7.3",
+    "source-map-support": "^0.5.0",
+    "stack-trace": "^0.0.10"
   }
 }
