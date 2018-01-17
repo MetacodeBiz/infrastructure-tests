@@ -2,3 +2,4 @@ node_modules
 .git
 *.js
 *.js.map
+.nyc_output

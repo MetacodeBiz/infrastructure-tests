@@ -6,6 +6,8 @@ const url = sanitizer(encodeURIComponent);
 
 const delay = (millis: number) => new Promise<void>(resolve => setTimeout(resolve, millis));
 
+import fetch from 'node-fetch';
+
 export async function sslTest(query: { host: string }) {
     let json: { status: 'IN_PROGRESS' | 'READY', endpoints: { ipAddress: string }[] } = { status: 'IN_PROGRESS', endpoints: [] };
     let startNew = 'on';

@@ -7,7 +7,7 @@ These tests always ask external services to assess the state of the infrastructu
 
 ## Running tests
 
-Running locally: `npm start`
+Running locally: `npm test`
 
 Building and running through Docker:
 
@@ -38,7 +38,7 @@ Currently tests cover:
   * HTTPS responses on both zone apex and `www` subdomain,
   * [CAA records][CAA].
 
-See [`infr.ts`](infr.ts) for a complete list of supported tests.
+See [`queries.ts`](queries.ts) for a complete list of supported tests.
 
 [ALPN]: https://en.wikipedia.org/wiki/Application-Layer_Protocol_Negotiation
 [SSLLABS]: https://www.ssllabs.com/ssltest/
