@@ -2,14 +2,12 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es6",
+        "strict": true,
         "forceConsistentCasingInFileNames": true,
         "noFallthroughCasesInSwitch": true,
         "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "noImplicitAny": true,
         "noUnusedParameters": true,
         "noUnusedLocals": true,
-        "strictNullChecks": true,
         "removeComments": false,
         "sourceMap": true,
         "moduleResolution": "node"
