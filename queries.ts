@@ -24,7 +24,9 @@ export async function sslTest(query: { host: string }) {
             fetch(url`https://api.ssllabs.com/api/v2/getEndpointData?host=${query.host}&s=${endpoint.ipAddress}`)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Getting endpoint details failed: ' + response.statusText);
+                    return response.text().then(details => {
+                        throw new Error(`Getting endpoint details failed: ${response.statusText}. Details: ${details}.`);
+                    });
                 }
                 return response.json();
             }))) as any as {
