@@ -9,34 +9,30 @@ const delay = (millis: number) => new Promise<void>(resolve => setTimeout(resolv
 import fetch from 'node-fetch';
 
 export async function sslTest(query: { host: string }) {
-    let json: { status: 'IN_PROGRESS' | 'READY', endpoints: { ipAddress: string }[] } = { status: 'IN_PROGRESS', endpoints: [] };
-    let startNew = 'on';
-    while (json.status !== 'READY') {
-        const response = await fetch(url`https://api.ssllabs.com/api/v2/analyze?host=${query.host}&startNew=${startNew}`);
-        json = await response.json();
-        if (json.status !== 'READY') {
-            await delay(10000);
-        }
-        startNew = 'off';
-    }
-    return {
-        endpoints: await Promise.all(json.endpoints.map(endpoint =>
-            fetch(url`https://api.ssllabs.com/api/v2/getEndpointData?host=${query.host}&s=${endpoint.ipAddress}`)
-            .then(response => {
-                if (!response.ok) {
-                    return response.text().then(details => {
-                        throw new Error(`Getting endpoint details failed: ${response.statusText}. Details: ${details}.`);
-                    });
-                }
-                return response.json();
-            }))) as any as {
-                ipAddress: string;
-                grade: 'A+' | 'A' | 'F' | 'T';
-                details: {
-                    supportsAlpn: true
-                }
-            }[]
+    // see:
+    // https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs-v3.md#invoke-assessment-and-check-progress
+    interface SslLabsResponse {
+        status: 'IN_PROGRESS' | 'READY',
+        endpoints: {
+            ipAddress: string;
+            grade: 'A+' | 'A' | 'F' | 'T';
+            details: {
+                supportsAlpn: true
+            }
+        }[]
     };
+    let startNew = 'on';
+    do {
+        const response = await fetch(url`https://api.ssllabs.com/api/v2/analyze?host=${query.host}&startNew=${startNew}&all=done`);
+        const json = await response.json() as SslLabsResponse;
+        if (json.status === 'READY') {
+            return {
+                endpoints: json.endpoints
+            };
+        }
+        await delay(10000);
+        startNew = 'off';
+    } while (true);
 }
 
 export async function dnssec(query: { host: string }) {
