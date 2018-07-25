@@ -1,6 +1,6 @@
 # Test driven infrastructure
 
-[![Build Status](https://travis-ci.org/wiktor-k/infrastructure-tests.svg?branch=master)](https://travis-ci.org/wiktor-k/infrastructure-tests) [![Dependency Status](https://dependencyci.com/github/wiktor-k/infrastructure-tests/badge)](https://dependencyci.com/github/wiktor-k/infrastructure-tests)
+[![Build Status](https://travis-ci.org/wiktor-k/infrastructure-tests.svg?branch=master)](https://travis-ci.org/wiktor-k/infrastructure-tests) [![Dependency Status](https://dependencyci.com/github/wiktor-k/infrastructure-tests/badge)](https://dependencyci.com/github/wiktor-k/infrastructure-tests) [![Greenkeeper badge](https://badges.greenkeeper.io/wiktor-k/infrastructure-tests.svg)](https://greenkeeper.io/)
 
 This repository contains tests of the *metacode.biz* infrastructure.
 These tests always ask external services to assess the state of the infrastructure.
