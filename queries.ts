@@ -36,10 +36,11 @@ export async function sslTest(query: { host: string }) {
 }
 
 export async function dnssec(query: { host: string }) {
-    const response = await fetch(url`https://dnssec-name-and-shame.com/name-shame/?domainname=${query.host}`);
-    const json: { status: 'secure' | 'insecure' } = await response.json();
+    const response = await fetch(url`https://dns.google.com/resolve?name=${query.host}`);
+    // see: https://developers.google.com/speed/public-dns/docs/dns-over-https#dns_response_in_json
+    const json: { AD: boolean } = await response.json();
     return {
-        secure: json.status === 'secure'
+        secure: json.AD
     };
 }
 
