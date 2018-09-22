@@ -48,16 +48,10 @@ export async function headers(query: { url: string }) {
     const response = await fetch(query.url);
     return {
         get(header: string) {
-            const value = response.headers.get(header);
-            if (!value) {
-                return null;
-            }
+            const value = response.headers.get(header) as string;
             return value.split(/;\s*/g).reduce((previous, current) => {
                 if (current.includes('=')) {
                     const parts = current.split('=');
-                    previous[parts[0]] = parts[1];
-                } else if (current.includes(' ')) {
-                    const parts = current.split(' ');
                     previous[parts[0]] = parts[1];
                 } else {
                     previous[current] = null;
