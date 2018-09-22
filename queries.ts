@@ -75,3 +75,9 @@ export async function caaRecordTags(query: { hostname: string }) {
     // this function retrieves all configured tags
     return json.Answer.map(answer => answer.data.split(' ')[1]);
 }
+
+export async function dmarcSpf(query: { hostname: string }) {
+    const response = await fetch(url`https://app.valimail.com/domain_checker/v1/status/${query.hostname}.json`);
+    const json: { status: { [metric: string]: 'ok' | 'warning' | 'error' } } = await response.json();
+    return Object.values(json.status).every(value => value === 'ok');
+}

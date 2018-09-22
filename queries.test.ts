@@ -1,4 +1,4 @@
-import { sslTest, dnssec, headers } from './queries';
+import { sslTest, dnssec, headers, dmarcSpf } from './queries';
 
 import test from 'ava';
 
@@ -31,4 +31,8 @@ test('Security headers positive', async t => {
         t.true('includeSubDomains' in sts);
         t.true(Number(sts['max-age']) >= 31536000);
     }
+});
+
+test('DMARC/SPF positive', async t => {
+    t.true(await dmarcSpf({ hostname: 'valimail.com' }));
 });

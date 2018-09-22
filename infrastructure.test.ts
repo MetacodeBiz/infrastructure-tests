@@ -1,4 +1,4 @@
-import { sslTest, dnssec, headers, caaRecordTags } from './queries';
+import { sslTest, dnssec, headers, caaRecordTags, dmarcSpf } from './queries';
 
 import isIPv6 = require('is-ipv6-node');
 
@@ -91,4 +91,8 @@ test('CAA records support', async t => {
     t.true(tags.indexOf('issue') > -1);
     t.true(tags.indexOf('issuewild') > -1);
     t.true(tags.indexOf('iodef') > -1);
+});
+
+test('DMARC/SPF positive', async t => {
+    t.true(await dmarcSpf({ hostname: 'metacode.biz' }));
 });

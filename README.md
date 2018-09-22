@@ -36,7 +36,8 @@ Currently tests cover:
   * [DNSSEC configuration][DNSSEC],
   * [Security headers][SECH],
   * HTTPS responses on both zone apex and `www` subdomain,
-  * [CAA records][CAA].
+  * [CAA records][CAA],
+  * [DMARC][DMARC] and [SPF][SPF].
 
 See [`queries.ts`](queries.ts) for a complete list of supported tests.
 
@@ -45,3 +46,5 @@ See [`queries.ts`](queries.ts) for a complete list of supported tests.
 [DNSSEC]: https://www.icann.org/resources/pages/dnssec-qaa-2014-01-29-en
 [SECH]: https://securityheaders.io/
 [CAA]: https://en.wikipedia.org/wiki/DNS_Certification_Authority_Authorization
+[DMARC]: https://dmarc.org/
+[SPF]: https://en.wikipedia.org/wiki/Sender_Policy_Framework
