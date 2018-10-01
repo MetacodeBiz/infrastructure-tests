@@ -7,6 +7,7 @@ const url = sanitizer(encodeURIComponent);
 const delay = (millis: number) => new Promise<void>(resolve => setTimeout(resolve, millis));
 
 import fetch from 'node-fetch';
+import * as tls from 'tls';
 
 export async function sslTest(query: { host: string }) {
     // see:
@@ -74,4 +75,19 @@ export async function dmarcSpf(query: { hostname: string }) {
     const response = await fetch(url`https://app.valimail.com/domain_checker/v1/status/${query.hostname}.json`);
     const json: { status: { [metric: string]: 'ok' | 'warning' | 'error' } } = await response.json();
     return Object.values(json.status).every(value => value === 'ok');
+}
+
+export function certificateValidityDays(query: { hostname: string, port: number }): Promise<number> {
+    return new Promise((resolve, reject) => {
+        const socket = tls.connect({
+            host: query.hostname,
+            port: query.port
+        }, () => {
+            const peerCertificate = socket.getPeerCertificate();
+            const validTo = Date.parse(peerCertificate.valid_to);
+            socket.end();
+            resolve((validTo - Date.now()) / (24 * 3600 * 1000));
+        });
+        socket.on('error', reject);
+    });
 }

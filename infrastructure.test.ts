@@ -1,4 +1,4 @@
-import { sslTest, dnssec, headers, caaRecordTags, dmarcSpf } from './queries';
+import { sslTest, dnssec, headers, caaRecordTags, dmarcSpf, certificateValidityDays } from './queries';
 
 import isIPv6 = require('is-ipv6-node');
 
@@ -95,4 +95,18 @@ test('CAA records support', async t => {
 
 test('DMARC/SPF positive', async t => {
     t.true(await dmarcSpf({ hostname: 'metacode.biz' }));
+});
+
+test('Certificates will not expire in 2 weeks', async t => {
+    const endpoints = [{
+        hostname: 'metacode.biz',
+        port: 443
+    }, {
+        hostname: 'metacode.biz',
+        port: 5223
+    }];
+    for (const endpoint of endpoints) {
+        const validityDays = await certificateValidityDays(endpoint);
+        t.true(validityDays > 14);
+    }
 });

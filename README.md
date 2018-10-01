@@ -36,6 +36,7 @@ Currently tests cover:
   * [DNSSEC configuration][DNSSEC],
   * [Security headers][SECH],
   * HTTPS responses on both zone apex and `www` subdomain,
+  * close certificate expiration dates,
   * [CAA records][CAA],
   * [DMARC][DMARC] and [SPF][SPF].
 
