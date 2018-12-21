@@ -24,7 +24,7 @@ export async function sslTest(query: { host: string }) {
     };
     let startNew = 'on';
     do {
-        const response = await fetch(url`https://api.ssllabs.com/api/v2/analyze?host=${query.host}&startNew=${startNew}&all=done`);
+        const response = await fetch(url`https://api.ssllabs.com/api/v3/analyze?host=${query.host}&startNew=${startNew}&all=done`);
         const json = await response.json() as SslLabsResponse;
         if (json.status === 'READY') {
             return {
