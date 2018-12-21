@@ -32,7 +32,7 @@ Currently tests cover:
 
   * HTTP/2 with [ALPN][ALPN],
   * IPv6 support,
-  * [TLS configuration][SSLLABS],
+  * [TLS configuration][SSLLABS] with [modern TLS versions][TLSVER],
   * [DNSSEC configuration][DNSSEC],
   * [Security headers][SECH],
   * HTTPS responses on both zone apex and `www` subdomain,
@@ -49,3 +49,4 @@ See [`queries.ts`](queries.ts) for a complete list of supported tests.
 [CAA]: https://en.wikipedia.org/wiki/DNS_Certification_Authority_Authorization
 [DMARC]: https://dmarc.org/
 [SPF]: https://en.wikipedia.org/wiki/Sender_Policy_Framework
+[TLSVER]: https://www.zdnet.com/article/chrome-edge-ie-firefox-and-safari-to-disable-tls-1-0-and-tls-1-1-in-2020/

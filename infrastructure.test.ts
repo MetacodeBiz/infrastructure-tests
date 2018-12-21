@@ -29,6 +29,16 @@ test('IPv6 support', async t => {
     );
 });
 
+test('TLS1.2/1.3 support', async t => {
+    const allowedTlsVersions = ['1.2', '1.3'];
+    t.true(
+        (await endpoints).every(endpoint => endpoint.details.protocols.every(protocol =>
+            protocol.name === 'TLS' && allowedTlsVersions.includes(protocol.version)
+        )),
+        'Must use only TLS with versions: ' + allowedTlsVersions
+    );
+});
+
 test('DNSSEC support', async t=> {
     const result = await dnssec({ host: 'metacode.biz' });
     t.true(result.secure);

@@ -18,7 +18,11 @@ export async function sslTest(query: { host: string }) {
             ipAddress: string;
             grade: 'A+' | 'A' | 'F' | 'T';
             details: {
-                supportsAlpn: true
+                supportsAlpn: true,
+                protocols: {
+                    name: string;
+                    version: string;
+                }[]
             }
         }[]
     };
