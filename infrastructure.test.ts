@@ -117,6 +117,6 @@ test('Certificates will not expire in 2 weeks', async t => {
     }];
     for (const endpoint of endpoints) {
         const validityDays = await certificateValidityDays(endpoint);
-        t.true(validityDays > 14);
+        t.true(validityDays > 14, `Certificate for ${endpoint.hostname}:${endpoint.port} is valid only for ${validityDays} days.`);
     }
 });
