@@ -19,7 +19,7 @@
     "typescript": "^3.0.3"
   },
   "dependencies": {
-    "ava": "^2.1.0",
+    "ava": "^2.2.0",
     "glob": "^7.1.4",
     "is-ipv6-node": "^1.0.7",
     "node-fetch": "^2.6.0",
