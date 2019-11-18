@@ -1,6 +1,6 @@
 # Test driven infrastructure
 
-[![Build Status](https://travis-ci.org/MetacodeBiz/infrastructure-tests.svg?branch=master)](https://travis-ci.org/MetacodeBiz/infrastructure-tests)
+![Build Status](https://github.com/MetacodeBiz/infrastructure-tests/workflows/Docker%20Image%20CI/badge.svg)
 
 This repository contains tests of the *metacode.biz* infrastructure.
 These tests always ask external services to assess the state of the infrastructure.
