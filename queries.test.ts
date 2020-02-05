@@ -5,8 +5,8 @@ import test from 'ava';
 test('SSL positive', async t => {
     const result = await sslTest({ host: 'google.com' });
     t.is(result.endpoints.length, 2);
-    t.is(result.endpoints[0].grade, 'A');
-    t.is(result.endpoints[1].grade, 'A');
+    t.is(result.endpoints[0].grade, 'B');
+    t.is(result.endpoints[1].grade, 'B');
     t.true(result.endpoints[0].details.supportsAlpn);
     t.true(result.endpoints[1].details.supportsAlpn);
 });
