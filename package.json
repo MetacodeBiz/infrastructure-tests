@@ -13,13 +13,13 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/glob": "^7.1.1",
-    "@types/node": "^13.7.0",
-    "@types/node-fetch": "^2.5.4",
+    "@types/node": "^13.9.2",
+    "@types/node-fetch": "^2.5.5",
     "@types/stack-trace": "^0.0.29",
-    "typescript": "^3.7.5"
+    "typescript": "^3.8.3"
   },
   "dependencies": {
-    "ava": "^3.2.0",
+    "ava": "^3.5.0",
     "glob": "^7.1.6",
     "is-ipv6-node": "^1.0.7",
     "node-fetch": "^2.6.0",
